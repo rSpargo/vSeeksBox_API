@@ -1,7 +1,4 @@
-var express= require('express'),
-api = require('./api.js');
-app = express();
-
+var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://admin:pass@ds113825.mlab.com:13825/vseeks-box');
 
@@ -29,5 +26,8 @@ var userSchema = mongoose.Schema({
 
 var user = mongoose.model('users', userSchema);
 
-app.get('/users', api.getUsers);
-app.post('/users', api.postUser);
+exports.getUsers = function(req, res) {
+    res.send(function() {
+        
+    });
+};
