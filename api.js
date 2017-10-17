@@ -24,10 +24,8 @@ var userSchema = mongoose.Schema({
     ]
 });
 
-var user = mongoose.model('users', userSchema);
+var User = mongoose.model('users', userSchema);
 
-exports.getUsers = function(req, res) {
-    res.send(function() {
-        
-    });
+exports.postUser = function(req, res) {
+    var user = new User({username: req.query.username, pass: req.query.pass, vSeeks: []})
 };
