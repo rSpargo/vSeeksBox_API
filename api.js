@@ -30,7 +30,13 @@ exports.postUser = function(req, res) {
     var user = new User({username: req.query.username, pass: req.query.pass, vSeeks: []});
     user.save(function (err, person) {
         if (err) { return console.error(err); }
-        console.log("Successfully added " + person + " to database!");
+        res.send("Successfully added " + person.username + " to database!");
     });
-    res.send("test");
+};
+exports.postVSeeks = function(req, res) {
+    User.findOne({ username = req.query.user }, function(err, doc) {
+        doc.vSeeks.push(req.query.task);
+        doc.save();
+        console.log("Successfully added vSeek with task: " + req.query.task + " to the database.");
+    });
 };
