@@ -27,5 +27,9 @@ var userSchema = mongoose.Schema({
 var User = mongoose.model('users', userSchema);
 
 exports.postUser = function(req, res) {
-    var user = new User({username: req.query.username, pass: req.query.pass, vSeeks: []})
+    var user = new User({username: req.query.username, pass: req.query.pass, vSeeks: []});
+    user.save(function (err, person) {
+        if (err) { return console.error(err); }
+        alert("Successfully added " + person + " to database!");
+    });
 };
