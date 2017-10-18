@@ -35,7 +35,7 @@ exports.postUser = function(req, res) {
 };
 exports.postVSeeks = function(req, res) {
     User.findOne({ username: req.params.user }, function(err, doc) {
-        doc.vSeeks.push(req.body.task);
+        doc.vSeeks.push({ task: req.body.task });
         doc.save();
         console.log("Successfully added vSeek with task: " + req.body.task + " to the database.");
     });
