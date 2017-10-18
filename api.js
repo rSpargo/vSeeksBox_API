@@ -30,7 +30,7 @@ exports.postUser = function(req, res) {
     var user = new User({username: req.query.username, pass: req.query.pass, vSeeks: []});
     user.save(function (err, person) {
         if (err) { return console.error(err); }
-        alert("Successfully added " + person + " to database!");
+        console.log("Successfully added " + person + " to database!");
     });
     res.send("test");
 };
