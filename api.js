@@ -32,4 +32,5 @@ exports.postUser = function(req, res) {
         if (err) { return console.error(err); }
         alert("Successfully added " + person + " to database!");
     });
+    res.send("test");
 };
