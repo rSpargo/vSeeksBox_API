@@ -7,6 +7,6 @@ app.get('/', function(req, res) {
     res.send("Welcome to the API.");
 });
 app.get('/saveUser', api.postUser);
-app.post('/saveVSeeks', api.postVSeeks);
+app.get('/saveVSeeks', api.postVSeeks);
 
 app.listen(process.env.PORT || 5000);
