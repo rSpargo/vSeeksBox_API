@@ -21,13 +21,24 @@ var userSchema = mongoose.Schema({
                 seconds: Number
             }
         }
-    ]
+    ],
+    preferences: {
+        notifications: {
+            tone: Boolean
+        },
+        commands: [
+            {
+                phrase: String,
+                site_blacklist: [String]
+            }
+        ]
+    }
 });
 
 var User = mongoose.model('users', userSchema);
 
 exports.postUser = function(req, res) {
-    var user = new User({username: req.query.username, pass: req.query.pass, vSeeks: []});
+    var user = new User({username: req.query.username, pass: req.query.pass});
     user.save(function (err, person) {
         if (err) { return console.error(err); }
         res.send("Successfully added '" + person.username + "' to database!");
@@ -39,5 +50,16 @@ exports.postVSeeks = function(req, res) {
         doc.save();
         res.send("Completed.");
         console.log("Successfully added vSeek with task: " + req.body.task + " to the database.");
+    });
+};
+
+exports.postPrefs = function(req, res) {
+    User.findOne({ username: req.params.user }, function(err, doc) {
+        if (err) { console.error(err); }
+        doc.preferences.notifications.tone = req.body.tone;
+        doc.preferences.commands = req.body.commands;
+        doc.save();
+        res.send("Completed.");
+        console.log("Successfully saved user preferences!");
     });
 };

@@ -17,5 +17,6 @@ app.get('/', function(req, res) {
 });
 app.post('/saveUser', urlEncodedParser, api.postUser);
 app.post('/saveVSeeks/:user', urlEncodedParser, api.postVSeeks);
+app.post('/savePrefs/:user', urlEncodedParser, api.postPrefs);
 
 app.listen(process.env.PORT || 5000);
