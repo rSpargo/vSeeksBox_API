@@ -5,12 +5,12 @@ bodyParser = require('body-parser');
 app = express();
 var urlEncodedParser = bodyParser.urlencoded({ extended: true });
 
-/* app.use(function(req, res, next) {
+app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
- */
+
 //app.get('/getUsers', api.getUsers);
 app.get('/', function(req, res) {
     res.send("Welcome to the API.");
