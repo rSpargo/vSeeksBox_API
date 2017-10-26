@@ -57,7 +57,7 @@ exports.postPrefs = function(req, res) {
     User.findOne({ username: req.params.user }, function(err, doc) {
         if (err) { console.error(err); }
         doc.preferences.notifications.tone = req.body.tone;
-        doc.preferences.commands = req.body.commands;
+        doc.preferences.commands = JSON.parse(req.body.commands);
         doc.save();
         res.send("Completed.");
         console.log("Successfully saved user preferences!");
