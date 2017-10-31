@@ -3,7 +3,8 @@ api = require('./api.js'),
 bodyParser = require('body-parser');
 
 app = express();
-var urlEncodedParser = bodyParser.urlencoded({ extended: true });
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
@@ -16,8 +17,8 @@ app.use(function(req, res, next) {
 app.get('/', function(req, res) {
     res.send("Welcome to the API.");
 });
-app.post('/saveUser', urlEncodedParser, api.postUser);
+app.post('/saveUser', api.postUser);
 app.post('/saveVSeeks/:user', api.postVSeeks);
-app.post('/savePrefs/:user', urlEncodedParser, api.postPrefs);
+app.post('/savePrefs/:user', api.postPrefs);
 
 app.listen(process.env.PORT || 5000);
