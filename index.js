@@ -4,7 +4,7 @@ bodyParser = require('body-parser');
 
 app = express();
 var urlEncodedParser = bodyParser.urlencoded({ extended: true });
-var jsonParser = bodyParse.json();
+app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
     res.send("Welcome to the API.");
 });
 app.post('/saveUser', urlEncodedParser, api.postUser);
-app.post('/saveVSeeks/:user', jsonParser, api.postVSeeks);
+app.post('/saveVSeeks/:user', api.postVSeeks);
 app.post('/savePrefs/:user', urlEncodedParser, api.postPrefs);
 
 app.listen(process.env.PORT || 5000);
