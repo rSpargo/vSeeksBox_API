@@ -44,14 +44,14 @@ exports.postUser = function(req, res) {
     });
 };
 exports.postVSeeks = function(req, res) {
-    console.log("REQ: ", req);
+    console.log("REQ: ", req.body);
     User.findOne({ username: req.params.user }, function(err, doc) {
         doc.vSeeks.push({
             task: req.body.task,
             timer: {
-                hours: req.body.hours,
-                minutes: req.body.minutes,
-                seconds: req.body.seconds
+                hours: req.body.timer.hours,
+                minutes: req.body.timer.minutes,
+                seconds: req.body.timer.seconds
             }
         });
         doc.save();
