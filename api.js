@@ -46,11 +46,11 @@ exports.postUser = function(req, res) {
 exports.postVSeeks = function(req, res) {
     User.findOne({ username: req.params.user }, function(err, doc) {
         doc.vSeeks.push({
-            task: req.task,
+            task: req.body.task,
             timer: {
-                hours: req.hours,
-                minutes: req.minutes,
-                seconds: req.seconds
+                hours: req.body.hours,
+                minutes: req.body.minutes,
+                seconds: req.body.seconds
             }
         });
         doc.save();
