@@ -44,6 +44,7 @@ exports.postUser = function(req, res) {
     });
 };
 exports.postVSeeks = function(req, res) {
+    console.log(req.body);
     User.findOne({ username: req.params.user }, function(err, doc) {
         doc.vSeeks.push({
             task: req.body.task,
