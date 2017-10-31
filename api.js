@@ -15,7 +15,6 @@ var userSchema = mongoose.Schema({
         {
             task: String,
             timer: {
-                ticks: Number,
                 hours: Number,
                 minutes: Number,
                 seconds: Number
