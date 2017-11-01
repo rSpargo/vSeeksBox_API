@@ -70,3 +70,10 @@ exports.postPrefs = function(req, res) {
         console.log("Successfully saved user preferences!");
     });
 };
+
+exports.getVSeeks = function (req, res) {
+    User.findOne({ username: req.params.user }, function(err, doc) {
+        if (err) { console.error(err); }
+        res.send(doc.vSeeks);
+    });
+};
