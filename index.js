@@ -22,5 +22,6 @@ app.post('/saveVSeeks/:user', api.postVSeeks);
 app.post('/savePrefs/:user', api.postPrefs);
 
 app.get('/getVSeeks/:user', api.getVSeeks);
+app.get('/getData/:user', api.getData);
 
 app.listen(process.env.PORT || 5000);

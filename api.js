@@ -77,3 +77,14 @@ exports.getVSeeks = function (req, res) {
         res.send(doc.vSeeks);
     });
 };
+
+exports.getData = function (req, res) {
+    User.findOne({ username: req.params.user }, function (err, doc) {
+        if (err) { console.error(err); }
+        var data = {
+            preferences: doc.preferences,
+            vSeeks: doc.vSeeks
+        }
+        res.send(data);
+    });
+}
