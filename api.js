@@ -1,3 +1,5 @@
+var idJSON = require('./id_gen.json');
+
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://admin:pass@ds113825.mlab.com:13825/vseeks-box');
@@ -13,6 +15,7 @@ var userSchema = mongoose.Schema({
     pass: String,
     vSeeks: [
         {
+            id: String,
             task: String,
             timer: {
                 hours: Number,
@@ -87,4 +90,13 @@ exports.getData = function (req, res) {
         }
         res.send(data);
     });
+};
+
+exports.genID = function (req, res) {
+    var randNum = Math.floor(Math.random() * 100);
+    var rand_a = Math.floor(Math.random() * idJSON.phrases_a.length);
+    var rand_b = Math.floor(Math.random() * idJSON.phrases_b.length);
+
+    res.send(idJSON.phrases_a[rand_a] + idJSON.phrases_b[rand_b] + randNum);
+
 }

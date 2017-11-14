@@ -23,5 +23,6 @@ app.post('/savePrefs/:user', api.postPrefs);
 
 app.get('/getVSeeks/:user', api.getVSeeks);
 app.get('/getData/:user', api.getData);
+app.get('/genID', api.genID);
 
 app.listen(process.env.PORT || 5000);
