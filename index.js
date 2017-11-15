@@ -20,6 +20,7 @@ app.get('/', function(req, res) {
 app.post('/saveUser', api.postUser);
 app.post('/saveVSeeks/:user', api.postVSeeks);
 app.post('/savePrefs/:user', api.postPrefs);
+app.post('/saveData/:user', api.postData);
 
 app.get('/getVSeeks/:user', api.getVSeeks);
 app.get('/getData/:user', api.getData);
