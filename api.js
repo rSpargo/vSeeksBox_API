@@ -93,7 +93,11 @@ exports.getData = function (req, res) {
             var user = new User({userID: req.params.user});
             user.save(function (err, person) {
                 if (err) { return console.error(err); }
-                res.send("Added new user to database! " + person.userID);
+                var newData = {
+                    preferences: person.preferences,
+                    vSeeks: doc.vSeeks
+                }
+                res.send(newData);
             });
         }
         if (err) { console.error(err); }
