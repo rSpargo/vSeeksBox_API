@@ -11,8 +11,7 @@ db.once('open', function(callback) {
 });
 
 var userSchema = mongoose.Schema({
-    username: String,
-    pass: String,
+    userID: String,
     vSeeks: [
         {
             id: String,
@@ -82,13 +81,22 @@ exports.getVSeeks = function (req, res) {
 };
 
 exports.getData = function (req, res) {
-    User.findOne({ username: req.params.user }, function (err, doc) {
-        if (err) { console.error(err); }
-        var data = {
-            preferences: doc.preferences,
-            vSeeks: doc.vSeeks
+    User.findOne({ userID: req.params.user }, function (err, doc) {
+        if (doc) {
+            var data = {
+                preferences: doc.preferences,
+                vSeeks: doc.vSeeks
+            }
+            res.send(data);
         }
-        res.send(data);
+        else {
+            var user = new User({userID: req.params.user});
+            user.save(function (err, person) {
+                if (err) { return console.error(err); }
+                res.send("Added new user to database! " + person.userID);
+            });
+        }
+        if (err) { console.error(err); }
     });
 };
 
