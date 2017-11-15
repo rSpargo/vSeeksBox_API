@@ -63,7 +63,7 @@ exports.postVSeeks = function(req, res) {
 };
 
 exports.postPrefs = function(req, res) {
-    User.findOne({ username: req.params.user }, function(err, doc) {
+    User.findOne({ userID: req.params.user }, function(err, doc) {
         if (err) { console.error(err); }
         doc.preferences.notifications.tone = req.body.tone;
         doc.preferences.commands = JSON.parse(req.body.commands);
@@ -74,7 +74,7 @@ exports.postPrefs = function(req, res) {
 };
 
 exports.getVSeeks = function (req, res) {
-    User.findOne({ username: req.params.user }, function(err, doc) {
+    User.findOne({ userID: req.params.user }, function(err, doc) {
         if (err) { console.error(err); }
         res.send(doc.vSeeks);
     });
