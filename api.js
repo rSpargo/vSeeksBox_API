@@ -25,7 +25,7 @@ var userSchema = mongoose.Schema({
     ],
     preferences: {
         notifications: {
-            tone: Boolean
+            tone: {type: Boolean, default: true}
         },
         commands: [
             {
@@ -76,8 +76,8 @@ exports.postPrefs = function(req, res) {
 exports.postData = function(req, res) {
     User.findOne({ userID: req.params.user }, function(err, doc) {
         if (err) { console.error(err); }
-        doc.preferences = req.body.preferences;
-        doc.vSeeks = req.body.vSeeks;
+        doc.preferences = JSON.parse(req.body.preferences);
+        doc.vSeeks = JSON.parse(req.body.vSeeks);
         doc.save();
         res.send("Completed.");
     });
