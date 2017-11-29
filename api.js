@@ -20,19 +20,15 @@ var userSchema = mongoose.Schema({
                 hours: Number,
                 minutes: Number,
                 seconds: Number
-            }
+            },
+            blacklist: [String]
         }
     ],
     preferences: {
         notifications: {
-            tone: {type: Boolean, default: true}
-        },
-        commands: [
-            {
-                phrase: String,
-                site_blacklist: [String]
-            }
-        ]
+            tone: {type: Boolean, default: true},
+            reminder: {type: Number, default: 5}
+        }
     }
 });
 
